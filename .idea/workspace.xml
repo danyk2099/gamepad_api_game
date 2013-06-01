@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1842dc87-5924-4134-945c-c927f9462d74" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-    </list>
+    <list default="true" id="1842dc87-5924-4134-945c-c927f9462d74" name="Default" comment="" />
     <ignored path="sharebear.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="1842dc87-5924-4134-945c-c927f9462d74" time="1370013154685" ignored="false" />
