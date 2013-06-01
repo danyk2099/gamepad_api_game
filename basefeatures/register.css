@@ -1,0 +1,16 @@
+ul
+{
+    float:left;
+    list-style: none;
+}
+
+li
+{
+    display:block;
+}
+
+#registrationFormLabels
+{}
+
+#registrationFormFields
+{}
