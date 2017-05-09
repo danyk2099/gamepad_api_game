@@ -2,8 +2,13 @@ body {
     background-color: #808080;
 }
 
+h1 {
+    text-align: center;
+    color: pink;
+    font-family: "Comic Sans MS";
+}
+
 .character-box {
-    /*border:solid 1px #FF0000;*/
     width: 150px;
     height: 135px;
     background: transparent url('../images/mlp/pinkie-pie-8-bit_small.png') no-repeat 0 0;
@@ -23,4 +28,11 @@ body {
     display: inline-block;
     width: 40px;
     height: 20px;
+    position: absolute;
+
+    transition: left 2s ease 1s;
+}
+
+.laser-box.move-trans {
+    left: 1024px !important;
 }

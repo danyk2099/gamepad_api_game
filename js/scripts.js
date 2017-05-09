@@ -7,7 +7,9 @@ let myGamepadApi = (function(){
     let characterPosition_V = 0;
     let gameCharacters = [];
     let isGameLoopRunning = false;
+
     const mainContainer = document.querySelector('body');
+    const mainContainerWidth = mainContainer.offsetWidth;
 
     function appendCharacterBox() {
         const characterBox = document.createElement('div');
@@ -19,8 +21,9 @@ let myGamepadApi = (function(){
     }
 
     function appendLaser(){
-        const laserInitTopPosition = characterPosition_V + 5;
-        const laserInitLeftPosition = gameCharacters[0].offsetWidth + 5;
+        const laserInitTopPosition = characterPosition_V + 25;
+        const laserInitLeftPosition = characterPosition_H + gameCharacters[0].offsetWidth + 10;
+
         console.log(`T: ${laserInitTopPosition}, L: ${laserInitLeftPosition}`);
         const laserBox = document.createElement('div');
         laserBox.classList.add('laser-box');
@@ -28,11 +31,18 @@ let myGamepadApi = (function(){
         laserBox.style.left = `${laserInitLeftPosition}px`;
 
         mainContainer.appendChild(laserBox);
+
+        return laserBox;
+    }
+
+    function moveLaser(currentLaser){
+        currentLaser.classList.add('move-trans');
     }
 
     function fireLaser(){
-        console.log('PONY!');
+        console.log('Firing Pinkie Laser!!');
         const ponyLaser = appendLaser();
+        moveLaser(ponyLaser);
     }
 
     function setEvents(){
@@ -40,9 +50,8 @@ let myGamepadApi = (function(){
             console.log('CONNECTED EVENT: ', evt);
             console.log('Gamepad Index: ', evt.gamepad.index);
             console.log('Gamepad ID: ', evt.gamepad.id);
-            //debugger;
 
-            alert('Gamepad Connected! Cherio!');
+            //alert('Gamepad Connected! Cherio!');
 
             if(!isGameLoopRunning){
                 isGameLoopRunning = true;
@@ -51,11 +60,21 @@ let myGamepadApi = (function(){
         });
 
         window.addEventListener('gamepaddisconnected', () => {
-            alert('Gamepad Disconnected!!');
+            cancelAnimationFrame(loopFrame);
+
+            //alert('Gamepad Disconnected!!');
         });
     }
 
+    let loopFrame;
+
     function gameLoop(){
+        if(!navigator.getGamepads()[0]){
+            return;
+        }
+
+        console.log('Looping!!');
+
         if(navigator.getGamepads()[0].buttons[15].pressed){
             characterPosition_H++;
         }
@@ -79,18 +98,16 @@ let myGamepadApi = (function(){
             gameCharacters[0].classList.remove('fire');
         }
 
-        gameCharacters[0].style.left = characterPosition_H + 'px';
-        gameCharacters[0].style.top = characterPosition_V + 'px';
+        gameCharacters[0].style.left = `${characterPosition_H}px`;
+        gameCharacters[0].style.top = `${characterPosition_V}px`;
 
-        requestAnimationFrame(gameLoop);
+        loopFrame = requestAnimationFrame(gameLoop);
     }
 
     function init(){
         appendCharacterBox();
         setEvents();
         gameLoop();
-
-
     }
 
     return {
