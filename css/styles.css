@@ -1,0 +1,26 @@
+body {
+    background-color: #808080;
+}
+
+.character-box {
+    /*border:solid 1px #FF0000;*/
+    width: 150px;
+    height: 135px;
+    background: transparent url('../images/mlp/pinkie-pie-8-bit_small.png') no-repeat 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.character-box.fire {
+    background-position-y: -135px;
+}
+
+.laser-box {
+    border: solid 3px #FFC0CB;
+    border-radius: 4px;
+    background-color: #FF0000;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}

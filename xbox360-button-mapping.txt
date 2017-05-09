@@ -1,0 +1,27 @@
+﻿D-Pad
+-----
+12 - up
+13 - down
+14 - left
+15 - right
+
+
+Color Buttons
+--------------
+3 - Y
+2 - X
+0 - A
+1 - B
+
+
+Back Peddals
+------------
+6 - Left
+7 - Right
+
+
+Back Buttons
+------------
+4 - Left
+5 - Right
+
