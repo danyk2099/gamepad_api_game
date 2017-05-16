@@ -20,6 +20,22 @@ let myGamepadApi = (function(){
         mainContainer.appendChild(characterBox);
     }
 
+
+    function expandBubble(sizeThreshold, domElem, animInterval){
+        const animationInterval = setInterval(function(){
+            let currentWidth = parseInt(domElem.style.width);
+
+            if(parseInt(currentWidth) >= sizeThreshold){
+                clearInterval(animationInterval);
+            }
+
+            domElem.style.width = (currentWidth + 10) + 'px'; 
+            domElem.style.height = domElem.style.width; 
+
+        }, animInterval);
+    }
+
+
     function appendLaser(){
         const laserInitTopPosition = characterPosition_V + 25;
         const laserInitLeftPosition = characterPosition_H + gameCharacters[0].offsetWidth + 10;
