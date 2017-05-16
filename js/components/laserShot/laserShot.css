@@ -1,0 +1,15 @@
+.laser-box {
+  border: solid 3px #FFC0CB;
+  border-radius: 4px;
+  background-color: #FF0000;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  position: absolute;
+
+  transition: left 2s ease 1s;
+}
+
+.laser-box.move-trans {
+  left: 1024px !important;
+}

@@ -12,28 +12,13 @@ let myGamepadApi = (function(){
   const mainContainer = document.querySelector('body');
   const mainContainerWidth = mainContainer.offsetWidth;
 
-  function createPinkyBubble(){
-    let pinkyBubble = document.createElement('div');
-    pinkyBubble.classList.add('pinky-bubble');
-
-    return pinkyBubble;
-  }
-
-  function inflateBubble(multiplier, finalSize) {
-    const squareDimension = multiplier * finalSize;
-
-    pinkyBubbleElem.style.width = `${squareDimension}px`;
-    pinkyBubbleElem.style.height = `${squareDimension}px`;
-    pinkyBubbleElem.style.margin = `-${squareDimension/2}px`;
-  };
-
   function appendCharacterBox() {
     const characterBox = document.createElement('div');
     characterBox.classList.add('character-box');
     characterBox.id = `game_character_${gameCharacters.length + 1}`;
     gameCharacters.push(characterBox);
 
-    pinkyBubbleElem = createPinkyBubble();
+    pinkyBubbleElem = powerBubble.createPowerBubble();
     characterBox.appendChild(pinkyBubbleElem);
 
     mainContainer.appendChild(characterBox);
@@ -52,32 +37,6 @@ let myGamepadApi = (function(){
       domElem.style.height = domElem.style.width;
 
     }, animInterval);
-  }
-
-
-  function appendLaser(){
-    const laserInitTopPosition = characterPosition_V + 25;
-    const laserInitLeftPosition = characterPosition_H + gameCharacters[0].offsetWidth + 10;
-
-    console.log(`T: ${laserInitTopPosition}, L: ${laserInitLeftPosition}`);
-    const laserBox = document.createElement('div');
-    laserBox.classList.add('laser-box');
-    laserBox.style.top = `${laserInitTopPosition}px`;
-    laserBox.style.left = `${laserInitLeftPosition}px`;
-
-    mainContainer.appendChild(laserBox);
-
-    return laserBox;
-  }
-
-  function moveLaser(currentLaser){
-    currentLaser.classList.add('move-trans');
-  }
-
-  function fireLaser(){
-    console.log('Firing Pinkie Laser!!');
-    const ponyLaser = appendLaser();
-    moveLaser(ponyLaser);
   }
 
 
@@ -132,7 +91,7 @@ let myGamepadApi = (function(){
     if(navigator.getGamepads()[0].buttons[0].pressed){
       console.log('Pinky Laser!');
       gameCharacters[0].classList.add('fire');
-      fireLaser();
+      laserShot.fireLaser(characterPosition_H, characterPosition_V, gameCharacters[0].offsetWidth);
     }
     else{
       gameCharacters[0].classList.remove('fire');
@@ -142,10 +101,10 @@ let myGamepadApi = (function(){
     if(navigator.getGamepads()[0].buttons[6].pressed){
       console.log('Pinky Bubble!', navigator.getGamepads()[0].buttons[6].value);
 
-      inflateBubble(navigator.getGamepads()[0].buttons[6].value, 200);
+      powerBubble.inflateBubble(pinkyBubbleElem, navigator.getGamepads()[0].buttons[6].value, 200);
     }
     else{
-      inflateBubble(0, 0);
+      powerBubble.inflateBubble(pinkyBubbleElem);
     }
 
     loopFrame = requestAnimationFrame(gameLoop);
