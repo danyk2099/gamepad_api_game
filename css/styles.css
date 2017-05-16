@@ -36,3 +36,25 @@ h1 {
 .laser-box.move-trans {
     left: 1024px !important;
 }
+
+.pinky-bubble {
+    border: solid 1px #FF0000;
+    border-radius: 100px;
+    background-color: rgba(255, 0, 0, 0.3);
+    width: 0;
+    height:0;
+    position: absolute;
+    top: 50%;
+    /*right: 50%;*/
+    /*bottom: 50%;*/
+    left: 50%;
+    /*visibility: hidden;*/
+}
+
+.pinky-bubble.inflate {
+    /*width: 200px;*/
+    /*height:200px;*/
+
+    /*transition: width, 2s, ease;*/
+    visibility: visible;
+}
