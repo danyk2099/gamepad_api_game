@@ -1,4 +1,4 @@
-﻿D-Pad
+﻿D-Pad (Cross Button)
 -----
 12 - up
 13 - down
